@@ -16,3 +16,14 @@ print(f'Hexadecimal(0x19) to Binary => {binNum}')
 
 hexNum = hex(int('0b1010', 2))
 print(f'Binary(0b1010) to Hexadecimal => {hexNum}')
+
+print(bool(None))
+print(bool()) #by default false
+print(bool(0))
+print(bool(1))
+print(bool(""))
+print(bool("A"))
+print(bool({()}))
+print(bool({}))
+print(bool(set()))
+print(range())

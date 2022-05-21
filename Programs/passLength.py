@@ -1,0 +1,5 @@
+uname = input("Give your username\n")
+pword = input("Give your password\n")
+str = '*' * len(pword)
+print(f'Hi {uname}')
+print(f'Your {str} is {len(pword)} characters long.')

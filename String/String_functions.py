@@ -7,9 +7,13 @@ print(str)
 # str.strip() removes spaces from both ends
 print(str.strip(' is ')) # not reliable
 
-print(str.split())
 # str.split() can split according to various characters
+print(str.split())
 print(itemsStr.split('__'))
+
+# join
+strJoined = ' '.join(['hi', 'moris', 'hello'])
+print(strJoined)
 
 # str.replace() replaces the characters
 print(str.replace('a', '##'))

@@ -10,7 +10,9 @@ print('# Access elements using index \n\n   ## [start : stop : step]\n')
 newcart1 = mycart[:1] 
 print(f'newcart1 =>{newcart1}')
 
-# Copy list elements
+# Create and Copy list elements
+list1 = list(range(1,10,2))
+print(list1)
 newcart2 = mycart
 print(f'newcart2 =>{newcart2}')
 newcart3 = mycart.copy()

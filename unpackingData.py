@@ -18,3 +18,23 @@ print(type(k))
 (aa, *bb, cc) = (1, 2, 3, 4, 5)
 print(bb)
 print(type(bb))
+
+# Using loops for unpacking
+list1 = ['a', 'b', '1', 'd', 'e', ]
+for i in list1:
+  print(i)
+print()
+touple1 = ('a', 'b', 'c', 'd')
+for i in touple1:
+  print(i)
+print()
+dict1 = {'kmph': 45, 'reserve': 1.2, 'tank-capacity':12}
+for (i,j) in dict1.items():
+  print(i+ ' =>',j)
+print()
+for i in dict1.keys():
+  print(i)
+print()
+for i in dict1.values():
+  print(i)
+print()

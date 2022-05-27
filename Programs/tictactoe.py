@@ -1,9 +1,3 @@
-# def my_func(n1, n2):
-#   return n1+n2;
-
-# print(my_func(3, 4))
-
-
 import os
 
 board = [

@@ -25,40 +25,22 @@ def validInput(a, b):
   return False
 
 def isWinner():
-  # first row
-  if(board[0][0] == board[0][1] == board[0][2] and (board[0][2] == 'O' or board[0][2] == 'X')):
-    # print('first row')
-    return 1 if board[0][0] == 'O' else 2
-  # second row
-  if(board[1][0] == board[1][1] == board[1][2] and (board[1][2] == 'O' or board[1][2] == 'X')):
-    # print('second row')
-    return 1 if board[1][0] == 'O' else 2
-  # third row
-  if(board[2][0] == board[2][1] == board[2][2] and (board[2][2] == 'O' or board[2][2] == 'X')):
-    # print('third row')
-    return 1 if board[2][0] == 'O' else 2
-  
-  # first col
-  if(board[0][0] == board[1][0] == board[2][0] and (board[2][0] == 'O' or board[2][0] == 'X')):
-    # print('first col')
-    return 1 if board[0][0] == 'O' else 2
-  # second col
-  if(board[0][1] == board[1][1] == board[2][1] and (board[2][1] == 'O' or board[2][1] == 'X')):
-    # print('second col')
-    return 1 if board[1][0] == 'O' else 2
-  # third col
-  if(board[0][2] == board[1][2] == board[2][2] and (board[2][2] == 'O' or board[2][2] == 'X')):
-    # print('third col')
-    return 1 if board[2][0] == 'O' else 2
+  for i in [0,1,2]:
+    if(board[i][0] == board[i][1] == board[i][2] and (board[i][2] == 'O' or board[i][2] == 'X')):
+      # print('Rows')
+      return 1 if board[i][0] == 'O' else 2
+    if(board[0][i] == board[1][i] == board[2][i] and (board[2][i] == 'O' or board[2][i] == 'X')):
+      # print('Columns')
+      return 1 if board[0][i] == 'O' else 2
   
   # diagnal from leftupper to rightbottom
   if(board[0][0] == board[1][1] == board[2][2] and (board[2][2] == 'O' or board[2][2] == 'X')):
     # print('diagnal from leftupper to rightbottom')
-    return 1 if board[0][0] == 'O' else 2
+    return 1 if board[2][2] == 'O' else 2
   # diagnal from leftbottom to rightupper
   if(board[0][2] == board[1][1] == board[0][2] and (board[0][2] == 'O' or board[0][2] == 'X')):
     # print('diagnal from leftbottom to rightupper')
-    return 1 if board[0][0] == 'O' else 2
+    return 1 if board[0][2] == 'O' else 2
   return -1
 
 while(turns):

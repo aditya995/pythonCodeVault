@@ -1,5 +1,6 @@
 # Printing output
 print('Something')
+print('No new line will be added',end = " ") # print without new line
 print('Something' + ' ' + 'is on the screen')
 # Printing values from variables
 name = 'Aditya'

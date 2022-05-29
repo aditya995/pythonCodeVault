@@ -16,7 +16,7 @@ print(tuple1)
 # Add tuple to a tuple, multiply, addition allowed like string manipulation
 y = ("orange",)
 tuple1 += y * 2 
-touple1 = tuple1 + (8, 9)
+tuple1 = tuple1 + (8, 9)
 print(tuple1)
 
 # count() index()

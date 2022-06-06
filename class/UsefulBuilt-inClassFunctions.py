@@ -24,3 +24,26 @@ newAnimal02 = animal()
 print(newAnimal02.__dict__)
 newAnimal02.setVal(food='insects', name='Pegion', ability='fly')
 print(newAnimal02.__dict__)
+
+# Method Resolution Order 
+# Use the mro() method, it returns a list 
+# Eg. Class4.mro()
+# Use the _mro_ attribute, it returns a tuple 
+# Eg. Class4.__mro__ 
+print('-----')
+class Class1:
+    def m(self):
+        print("In Class1")
+ 
+class Class2(Class1):
+    def m(self):
+        print("In Class2")
+ 
+class Class3(Class1):
+    def m(self):
+        print("In Class3")
+ 
+class Class4(Class3, Class2):  
+    pass
+print(Class4.mro())         #This will print list
+print(Class4.__mro__)

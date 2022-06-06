@@ -7,7 +7,7 @@
 # __getitem__
 
 
-# Operator Magic Methods **
+# Operator Dunder/Magic Methods **
 
 # __sub__ for subtraction(-) 
 # __mul__ for multiplication(*)

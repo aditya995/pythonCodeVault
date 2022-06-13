@@ -6,5 +6,5 @@ Python all concepts in one repo.
 ## readibility
 ## clean
 ## perdictable
-## Keep It Super Simple S (KISS)
+## Keep It Super Simple (KISS)
 ## Dont Repeat Yourself (DRY)

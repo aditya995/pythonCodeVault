@@ -59,38 +59,48 @@ def convertToPostfix(tokens):
         '+': 2,
         '-': 2,
     }
+    # print('-----') # debug
     for i in tokens:
         if type(i) == type(1.0):
             postfix.append(i)
+            # print('#num') # debug
         elif i == '(':
             stack.append(i)
+            # print('#(') # debug
         elif i == ')':
             itCount = len(stack)
             for op in range(0, itCount):
                 if stack[-1] != '(':
                     postfix.append(stack.pop())
                 else:
+                    # print('#)') # debug
                     break
             stack.pop()
         elif i == '+' or i == '-' or i == '*' or i == '/' or i == '^':
-            if not stack.count and stack[-1] != '(' and operatorPriority[stack[-1]] < operatorPriority[i]:
-                stack.append(i)
-            elif len(stack) != 0 and stack[-1] != '(' and operatorPriority[stack[-1]] > operatorPriority[i]:
-                itCount = len(stack)
-                for op in range(0, itCount):
-                    if stack[-1] != '(':
-                        postfix.append(stack.pop())
-                    else:
-                        break
-                stack.append(i)
-            elif not stack.count and (stack[-1] != '(' and operatorPriority[stack[-1]] == operatorPriority[i]):
-                postfix.append(stack.pop())
-                stack.append(i)
+            if len(stack) > 0 and stack[-1] != '(':
+                # print('##', operatorPriority[stack[-1]], operatorPriority[i]) # debug
+                if operatorPriority[stack[-1]] < operatorPriority[i]:
+                    stack.append(i)
+                    # print('#1') # debug
+                elif operatorPriority[stack[-1]] > operatorPriority[i]:
+                    itCount = len(stack)
+                    for op in range(0, itCount):
+                        if stack[-1] != '(':
+                            postfix.append(stack.pop())
+                        else:
+                            # print('#2') # debug
+                            break
+                    stack.append(i)
+                elif operatorPriority[stack[-1]] == operatorPriority[i]:
+                    postfix.append(stack.pop())
+                    stack.append(i)
+                    # print('#3') # debug
             else:
+                # print('#4') # debug
                 stack.append(i)
         # input()  # debug
-        show(stack)  # debug
-        show(postfix)  # debug
+        # show(stack)  # debug
+        # show(postfix)  # debug
     return postfix
 
 
@@ -102,6 +112,8 @@ def evaluatePostfix(postfixTokens):
         if type(i) == type(1.0):
             cStack.append(i)
         else:
+            show(cStack, False, 'green', [len(cStack)-1, len(cStack)-2])
+            print(i)
             if i == '+':
                 result = cStack[-2]+cStack[-1]
             elif i == '-':
@@ -114,13 +126,14 @@ def evaluatePostfix(postfixTokens):
                 result = cStack[-2]**cStack[-1]
             cStack.pop()
             cStack[-1] = result
+            show(cStack, False, 'red', [len(cStack)-1])
     return cStack[0]
 
 # main function
 
 
 while(True):
-    print(colors['green'], 'Have fun doing math. (, ), *, /, +, - supported!',
+    print(colors['green'], "Have fun doing math.\n'(', ')', '*', '/', '+', '-', '^' supported!",
           colors['red'], '\nEnter x to quit\n', colors['reset'])
     inputExpression = input()
     # inputExpression = ' 2(1-3)2'  # debug
@@ -129,10 +142,12 @@ while(True):
         break
 
     tokens = createTokens(inputExpression)
-    print('\nFormatted for evaluation:')
+    print(colors['black'], colors['bg-lightgrey'],
+          'Formatted for evaluation:', colors['reset'],)
     show(tokens)
 
-    print('Converted to postfix equation:')
+    print(colors['black'], colors['bg-lightgrey'],
+          'Converted to postfix equation:', colors['reset'])
     try:
         postfixTokens = convertToPostfix(tokens)
         show(postfixTokens)
@@ -145,5 +160,5 @@ while(True):
     except Exception as ex:
         print(ex, '*****   Invalid syntax   *****')
     else:
-        print(result, 1*(3-4)*5+5*2*(1+2))
+        print(result)
 print('Thanks for using my program 😍')

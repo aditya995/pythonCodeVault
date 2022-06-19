@@ -1,4 +1,5 @@
 from dis import Instruction
+import sched
 import turtle
 
 
@@ -173,10 +174,8 @@ def drawString():
     global history
     global charCounter
     global penstat
-    scale = 1
     history += f'\n{scale}\n'
-    info = 'p to toggle penup-down\n(b, g for colors) and arrow keys to move around\nn to create pattern\ns to save pattern\nl to print saved-pattern\nshift s to change scale\nq to create grid, then input in console\nc to clear screen'
-    stringStream = info.lower()
+    stringStream = stringStream.lower()
     if not penstat:
         penUpDowntoggle()
     for i in stringStream:
@@ -192,37 +191,36 @@ def drawString():
             charDict[i] = ''
     charCounter = 0
 
-# main program
+
+def drawText():
+    global stringStream
+    content = 'something to be replaced'
+    stringStream = ''
+    print(
+        'Regex for input [A-Za-z-0-9+,() \\n]\nPress enter twice to exit multiline input')
+    while content != '':
+        content = input()
+        stringStream += content+'\n'
+    # stringStream = 'abc defghij\nklmnopqrst\nuvwxyz\n0123456789\n,(+ -)'
+    drawString()
 
 
-stringStream = ''
-refreshed = False
-bufferScale = 100
-initialScale = 5
-scale = initialScale
-history = ''
-player = turtle.Turtle()
-sc = turtle.Screen()
-sc.setup(700, 700)
-sc.bgcolor("blue")
-player.shape('classic')
-player.speed(0)
-player.color('green', 'red')
-turtle.bgcolor('black')
-penstat = True
-turtle.listen()
+def drawInstruction():
+    global stringStream
+    global scHeight
+    global scWidth
+    global penstat
+    global scale
+    if penstat:
+        penUpDowntoggle()
+    pos = ((-scWidth/2)+100*scale, (scHeight/2)-100*scale)
+    # stringStream = 'p, toggle penup-down\n(b, g) colors\narrows, move\nn, create pattern\ns, save pattern\nl, draw saved-pattern\nshift s, change scale\nq, create grid, give console-input\nc, clear screen\nshift i, info\nw, draw text'
+    stringStream = 'press p,b,g,arrows,s,c,l,n,w\nshift+s,g,i'
 
-# player.begin_fill()
-funcBind = {
-    '1': up,
-    '2': down,
-    '3': left,
-    '4': right,
-    '5': colorb,
-    '6': colorg,
-    '7': penUpDowntoggle,
-}
-charCounter = 0
+    player.setpos(pos)
+    drawString()
+
+
 charDict = {
     '\n': '',
     'a': '61111444441131133322322444442222544',
@@ -269,11 +267,43 @@ charDict = {
     '*': '',
     '/': '',
     '#': '',
-    ',': '',
+    '\\': '',
+    ',': '5446413242154444',
 
 }
-refreshed = False
 
+funcBind = {
+    '1': up,
+    '2': down,
+    '3': left,
+    '4': right,
+    '5': colorb,
+    '6': colorg,
+    '7': penUpDowntoggle,
+}
+# main program
+stringStream = ''
+refreshed = False
+bufferScale = 100
+initialScale = 2
+scale = initialScale
+history = ''
+penstat = True
+charCounter = 0
+scHeight = 800
+scWidth = 1000
+
+# Player creation
+player = turtle.Turtle()
+sc = turtle.Screen()
+sc.setup(scWidth, scHeight)
+player.shape('classic')
+player.speed(0)
+player.color('green', 'red')
+turtle.bgcolor('black')
+turtle.listen()
+
+# main loop
 turtle.onkey(colorb, 'b')
 turtle.onkey(colorg, 'g')
 turtle.onkey(penUpDowntoggle, 'p')
@@ -287,6 +317,6 @@ turtle.onkey(scaleBrush, 'S')
 turtle.onkey(printLoadedArt, 'l')
 turtle.onkey(clHis, 'n')
 turtle.onkey(makeGrid, 'G')
-turtle.onkey(drawString, 'I')
-# player.end_fill()
+turtle.onkey(drawInstruction, 'I')
+turtle.onkey(drawText, 'w')
 turtle.mainloop()

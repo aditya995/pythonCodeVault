@@ -1,5 +1,4 @@
-from dis import Instruction
-import sched
+import pyttsx3
 import turtle
 
 
@@ -203,6 +202,9 @@ def drawText():
         stringStream += content+'\n'
     # stringStream = 'abc defghij\nklmnopqrst\nuvwxyz\n0123456789\n,(+ -)'
     drawString()
+    speaker = pyttsx3.init()
+    speaker.say(stringStream)
+    speaker.runAndWait()
 
 
 def drawInstruction():
@@ -216,9 +218,14 @@ def drawInstruction():
     pos = ((-scWidth/2)+100*scale, (scHeight/2)-100*scale)
     # stringStream = 'p, toggle penup-down\n(b, g) colors\narrows, move\nn, create pattern\ns, save pattern\nl, draw saved-pattern\nshift s, change scale\nq, create grid, give console-input\nc, clear screen\nshift i, info\nw, draw text'
     stringStream = 'press p,b,g,arrows,s,c,l,n,w\nshift+s,g,i'
-
     player.setpos(pos)
+    speaker = pyttsx3.init()
+    speaker.say('Instructions are written below')
+    speaker.runAndWait()
     drawString()
+    speaker = pyttsx3.init()
+    speaker.say(stringStream)
+    speaker.runAndWait()
 
 
 charDict = {
@@ -291,7 +298,7 @@ history = ''
 penstat = True
 charCounter = 0
 scHeight = 800
-scWidth = 1000
+scWidth = 600
 
 # Player creation
 player = turtle.Turtle()

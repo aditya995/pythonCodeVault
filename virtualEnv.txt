@@ -1,0 +1,13 @@
+## windows
+# Installing virtualenv
+py -m pip install --user virtualenv
+# Creating a virtual environment
+py -m venv env
+# Activating a virtual environment
+.\env\Scripts\activate
+# Leaving the virtual environment
+deactivate
+
+## Installing packages
+py -m pip install package-name
+

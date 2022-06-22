@@ -216,16 +216,13 @@ def drawInstruction():
     if penstat:
         penUpDowntoggle()
     pos = ((-scWidth/2)+100*scale, (scHeight/2)-100*scale)
-    # stringStream = 'p, toggle penup-down\n(b, g) colors\narrows, move\nn, create pattern\ns, save pattern\nl, draw saved-pattern\nshift s, change scale\nq, create grid, give console-input\nc, clear screen\nshift i, info\nw, draw text'
-    stringStream = 'press p,b,g,arrows,s,c,l,n,w\nshift+s,g,i'
+    stringStream = 'p, toggle penup-down\n(b, g) colors\narrows, move\nn, create pattern\ns, save pattern\nl, draw saved-pattern\nshift s, change scale\nq, create grid, give console-input\nc, clear screen\nshift i, info\nw, draw text'
+    # stringStream = 'press p,b,g,arrows,s,c,l,n,w\nshift+s,g,i'
     player.setpos(pos)
     speaker = pyttsx3.init()
-    speaker.say('Instructions are written below')
+    speaker.say('Instructions: \n'+stringStream)
     speaker.runAndWait()
-    drawString()
-    speaker = pyttsx3.init()
-    speaker.say(stringStream)
-    speaker.runAndWait()
+    # drawString()
 
 
 charDict = {
